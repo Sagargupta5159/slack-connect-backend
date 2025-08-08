@@ -1,4 +1,4 @@
-// src/index.ts
+
 import express from 'express';
 import dotenv from 'dotenv';
 import { connectDB } from './db';
@@ -22,19 +22,14 @@ const PORT = process.env.PORT || 4000;
 app.listen(PORT, async () => {
   await connectDB();
   
-  console.log(`🚀 Server running at http://localhost:${PORT}`);
+  console.log(`Server running at http://localhost:${PORT}`);
 
     cron.schedule('* * * * *', async () => {
-    console.log('⏰ Checking for scheduled messages...');
+    console.log('Checking for scheduled messages...');
     console.log("Wait Sagar");
     await sendScheduledMessages();
   });
 
 });
 
-// {
-//   "channel": "C12345678",
-//   "message": "Hello from my Slack app!"
-// }
 
-// http://localhost:4000/api/auth/slack
