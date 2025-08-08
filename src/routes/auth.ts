@@ -53,7 +53,7 @@ router.get('/callback', async (req, res) => {
 
     await token.save();
 
-    // return res.send('✅ Slack workspace connected successfully. You can now close this tab.');
+    // return res.send(' Slack workspace connected successfully. You can now close this tab.');
     return res.redirect(`http://localhost:5173?connected=true&team_id=${data.team.id}`);
   } catch (err) {
     console.error(err);
