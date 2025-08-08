@@ -15,11 +15,11 @@ export const sendScheduledMessages = async () => {
 
   for (const msg of messages) {
     console.log("Each Message",msg);
-    console.log('🔍 Looking up token for:', msg.team_id); // Add this
+    console.log(' Looking up token for:', msg.team_id); // Add this
     const tokenDoc = await TokenModel.findOne({ 'team.id': msg.team_id });
 
     if (!tokenDoc) {
-      console.error(`❌ Slack token not found for team: ${msg.team_id}`);
+      console.error(` Slack token not found for team: ${msg.team_id}`);
       continue;
     }
     console.log("tokenDoc:",tokenDoc);
@@ -36,12 +36,12 @@ export const sendScheduledMessages = async () => {
 
       if (res.data.ok) {
         await MessageModel.findByIdAndUpdate(msg._id, { status: 'sent' });
-        console.log(`✅ Sent to ${msg.channel}: ${msg.message}`);
+        console.log(` Sent to ${msg.channel}: ${msg.message}`);
       } else {
-        console.error(`❌ Slack error: ${res.data.error}`);
+        console.error(` Slack error: ${res.data.error}`);
       }
     } catch (err) {
-      console.error(`❌ Error sending to ${msg.channel}:`, (err as Error).message);
+      console.error(` Error sending to ${msg.channel}:`, (err as Error).message);
     }
   }
 };
