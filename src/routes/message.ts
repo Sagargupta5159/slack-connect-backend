@@ -95,7 +95,7 @@ router.post('/schedule', async (req, res) => {
       team_id,
     });
 
-    console.log('✅ Message scheduled:', scheduledMessage);
+    console.log(' Message scheduled:', scheduledMessage);
 
     return res.json({ ok: true, scheduledMessage });
   } catch (err) {
