@@ -59,7 +59,7 @@ router.post('/send', async (req, res) => {
 //     const scheduledMessage = await MessageModel.create({
 //       channel,
 //       message,
-//       send_at: new Date(sendAt),  // ✅ convert to MongoDB format
+//       send_at: new Date(sendAt),  
 //     });
 
 //     return res.json({ ok: true, scheduledMessage });
@@ -81,7 +81,7 @@ router.post('/schedule', async (req, res) => {
     });
   }
 
-  const parsedDate = dayjs(sendAt); // ✅ ISO string parsing (from datetime-local)
+  const parsedDate = dayjs(sendAt);
 
   if (!parsedDate.isValid()) {
     return res.status(400).json({ error: 'Invalid sendAt format' });
@@ -91,7 +91,7 @@ router.post('/schedule', async (req, res) => {
     const scheduledMessage = await MessageModel.create({
       channel,
       message,
-      send_at: parsedDate.toDate(), // ✅ Store as Date
+      send_at: parsedDate.toDate(), 
       team_id,
     });
 
@@ -99,7 +99,7 @@ router.post('/schedule', async (req, res) => {
 
     return res.json({ ok: true, scheduledMessage });
   } catch (err) {
-    console.error('❌ Schedule Error:', (err as Error).message);
+    console.error(' Schedule Error:', (err as Error).message);
     return res.status(500).json({ error: 'Failed to schedule message' });
   }
 });
@@ -166,11 +166,11 @@ router.delete('/:id/cancel', async (req, res) => {
 
 
 router.get('/ping', (req, res) => {
-  res.send('✅ Message route is live');
+  res.send(' Message route is live');
 });
 
 // router.get('/ping', (req, res) => {
-//   res.send('✅ Message route is live');
+//   res.send(' Message route is live');
 // });
 
 
